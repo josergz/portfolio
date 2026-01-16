@@ -1,70 +1,73 @@
 ---
-import LinkedinIcon from '../components/icons/linkedin.astro';
-import GitHubIcon from '../components/icons/github.astro';
+import LinkedinIcon from '../components/icons/linkedin.astro'
+import GitHubIcon from '../components/icons/github.astro'
 ---
 
 <section
-	class="flex flex-col w-full p-4 md:p-10 py-12 md:py-28 lg:py-40 space-y-4"
+  class="flex flex-col w-full p-4 md:p-10 py-12 md:py-28 lg:py-40 space-y-4"
 >
-	<h2 class="text-white text-2xl sm:text-3xl md:text-4xl font-bold">
-		Hi, I'm José Rodríguez
-	</h2>
+  <h2 class="text-white text-2xl sm:text-3xl md:text-4xl font-bold">
+    Hi, I'm José Rodríguez
+  </h2>
 
-	<h1
-		id="typed-container"
-		class="text-blue-500 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight md:leading-tight mb-2 md:mb-0"
-	>
-		<span id="typed"></span>
-	</h1>
+  <h1
+    id="typed-container"
+    class="text-blue-500 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight md:leading-tight mb-2 md:mb-0"
+  >
+    <span id="typed"></span>
+  </h1>
 
-	<p class="text-white leading-relaxed text-xl">
-		<span class="text-yellow-300/90 text-xl font-bold">
-			+1 año diseñando experiencias web
-		</span>
-		desde Tabasco, México. Combino <span class="text-yellow-300/90 font-bold"
-			>JavaScript</span
-		> con potentes herramientas como
-		<span class="text-yellow-300/90 font-bold">Astro</span> y <span
-			class="text-yellow-300/90 font-bold">Tailwind</span
-		>, para construir interfaces <span class="text-yellow-300/90 font-bold"
-			>dinámicas</span
-		>, <span class="text-yellow-300/90 font-bold">modernas</span> y
-		<span class="text-yellow-300/90 font-bold">eficientes</span>. ¿Innovamos
-		juntos? 🚀💫
-	</p>
+  <p class="text-white leading-relaxed text-xl">
+    <span class="text-yellow-300/90 text-xl font-bold">
+      +1 año diseñando experiencias web
+    </span>
+    desde Tabasco, México. Combino <span class="text-yellow-300/90 font-bold"
+      >JavaScript</span
+    > con potentes herramientas como
+    <span class="text-yellow-300/90 font-bold">Astro</span> y <span
+      class="text-yellow-300/90 font-bold">Tailwind</span
+    >, para construir interfaces <span class="text-yellow-300/90 font-bold"
+      >dinámicas</span
+    >, <span class="text-yellow-300/90 font-bold">modernas</span> y
+    <span class="text-yellow-300/90 font-bold">eficientes</span>. ¿Innovamos
+    juntos? 🚀💫
+  </p>
 
-	<ul
-		class="flex flex-row flex-wrap justify-center sm:justify-start items-center gap-3"
-	>
-		<li>
-			<a
-				href="https://www.linkedin.com/in/josergz/"
-				aria-label="LinkedIn"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="hover:text-blue-500 transition-colors duration-200 flex-shrink-0"
-			>
-				<LinkedinIcon loading="lazy" class="w-7 h-7 sm:w-8 sm:h-8" />
-			</a>
-		</li>
-		<li>
-			<a
-				href="https://github.com/josergz"
-				aria-label="GitHub"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="hover:text-blue-500 transition-colors duration-200 flex-shrink-0"
-			>
-				<GitHubIcon loading="lazy" class="w-7 h-7 sm:w-8 sm:h-8" />
-			</a>
-		</li>
-		<li class="flex-shrink-0">
-			<a
-				href="https://docs.google.com/document/d/1kdMLTclsxVWM_Gt-LsRooKlhbUdcFV8S/edit?usp=sharing&ouid=105936946325949984848&rtpof=true&sd=true"
-				class="inline-block text-nowrap text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-xs sm:text-sm md:text-base px-3.5 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 transition-colors duration-300"
-			>
-				Descargar CV
-			</a>
-		</li>
-	</ul>
+  <ul
+    class="flex flex-row flex-wrap justify-center sm:justify-start items-center gap-3"
+  >
+    <li>
+      <a
+        href="https://www.linkedin.com/in/josergz/"
+        aria-label="LinkedIn"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-blue-500 transition-colors duration-200 flex-shrink-0"
+      >
+        <LinkedinIcon loading="lazy" class="w-7 h-7 sm:w-8 sm:h-8" />
+      </a>
+    </li>
+    <li>
+      <a
+        href="https://github.com/josergz"
+        aria-label="GitHub"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-blue-500 transition-colors duration-200 flex-shrink-0"
+      >
+        <GitHubIcon loading="lazy" class="w-7 h-7 sm:w-8 sm:h-8" />
+      </a>
+    </li>
+    <li class="flex-shrink-0">
+      <a
+        href="/assets/CV-Jose-Rodriguez.pdf"
+        download="CV-Jose-Rodriguez.pdf"
+        target="_blank"
+        rel="noopener"
+        class="inline-block text-nowrap text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-full text-xs sm:text-sm md:text-base px-3.5 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 transition-colors duration-300"
+      >
+        Descargar CV
+      </a>
+    </li>
+  </ul>
 </section>
