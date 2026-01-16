@@ -1,135 +1,135 @@
 <header
-	class="sticky top-0 backdrop-blur-sm z-50 py-4 w-full px-4 sm:px-6 lg:px-8"
+  class="sticky top-0 backdrop-blur-sm z-50 py-4 w-full px-4 sm:px-6 lg:px-8"
 >
-	<div class="flex justify-between items-center max-w-6xl mx-auto">
-		<!-- Logo -->
-		<a href="/" class="group flex items-center gap-2">
-			<h1
-				class="font-bold text-lg sm:text-xl text-white group-hover:text-blue-500 transition-colors duration-200"
-			>
-				{'<josergz/>'}
-			</h1>
-		</a>
+  <div class="flex justify-between items-center max-w-6xl mx-auto">
+    <!-- Logo -->
+    <a href="/" class="group flex items-center gap-2">
+      <h1
+        class="font-bold text-lg sm:text-xl text-white group-hover:text-blue-500 transition-colors duration-200"
+      >
+        {'<josergz/>'}
+      </h1>
+    </a>
 
-		<!-- Menú Desktop -->
-		<nav class="hidden md:block">
-			<ul class="flex gap-4 lg:gap-6">
-				<li>
-					<a class="nav-link" href="#top"> Inicio </a>
-				</li>
-				<li>
-					<a class="nav-link" href="#about"> Sobre mí</a>
-				</li>
-				<li>
-					<a class="nav-link" href="#projects"> Proyectos </a>
-				</li>
-				<li>
-					<a class="nav-link" href="mailto:joserdgz.dev@gmail.com">
-						Contacto
-					</a>
-				</li>
-			</ul>
-		</nav>
+    <!-- Menú Desktop -->
+    <nav class="hidden md:block">
+      <ul class="flex gap-4 lg:gap-6">
+        <li>
+          <a class="nav-link" href="#top"> Inicio </a>
+        </li>
+        <li>
+          <a class="nav-link" href="#about"> Sobre mí</a>
+        </li>
+        <li>
+          <a class="nav-link" href="#projects"> Proyectos </a>
+        </li>
+        <li>
+          <a class="nav-link" href="mailto:joserdgz.dev@gmail.com">
+            Contacto
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-		<!-- Menú Mobile -->
-		<div class="md:hidden relative">
-			<button
-				id="menuButton"
-				class="text-white hover:text-blue-500 transition-colors p-2"
-				aria-label="Toggle menu"
-				aria-expanded="false"
-			>
-				<svg
-					class="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M4 6h16M4 12h16M4 18h16"></path>
-				</svg>
-			</button>
+    <!-- Menú Mobile -->
+    <div class="md:hidden relative">
+      <button
+        id="menuButton"
+        class="text-white hover:text-blue-500 transition-colors p-2"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
 
-			<!-- Menú desplegable -->
-			<div
-				id="mobileMenu"
-				class="hidden absolute right-0 top-full mt-2 w-48 bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-xl py-2"
-			>
-				<ul class="flex flex-col gap-2">
-					<li><a href="#top" class="mobile-menu-link">Home</a></li>
-					<li><a href="#about" class="mobile-menu-link">About</a></li>
-					<li><a href="#projects" class="mobile-menu-link">Projects</a></li>
-					<li><a href="#contact" class="mobile-menu-link">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+      <!-- Menú desplegable -->
+      <div
+        id="mobileMenu"
+        class="hidden absolute right-0 top-full mt-2 w-48 bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-xl py-2"
+      >
+        <ul class="flex flex-col gap-2">
+          <li><a href="#top" class="mobile-menu-link">Home</a></li>
+          <li><a href="#about" class="mobile-menu-link">About</a></li>
+          <li><a href="#projects" class="mobile-menu-link">Projects</a></li>
+          <li><a href="#contact" class="mobile-menu-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </header>
 
 <script is:inline>
-	document.addEventListener('DOMContentLoaded', () => {
-		const menuButton = document.getElementById('menuButton');
-		const mobileMenu = document.getElementById('mobileMenu');
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.getElementById('menuButton')
+    const mobileMenu = document.getElementById('mobileMenu')
 
-		// Toggle menu
-		menuButton.addEventListener('click', (e) => {
-			e.stopPropagation();
-			mobileMenu.classList.toggle('hidden');
-			menuButton.setAttribute(
-				'aria-expanded',
-				mobileMenu.classList.contains('hidden') ? 'false' : 'true'
-			);
-		});
+    // Toggle menu
+    menuButton.addEventListener('click', (e) => {
+      e.stopPropagation()
+      mobileMenu.classList.toggle('hidden')
+      menuButton.setAttribute(
+        'aria-expanded',
+        mobileMenu.classList.contains('hidden') ? 'false' : 'true'
+      )
+    })
 
-		// Cerrar menú al hacer click fuera
-		document.addEventListener('click', (e) => {
-			if (!mobileMenu.classList.contains('hidden')) {
-				mobileMenu.classList.add('hidden');
-				menuButton.setAttribute('aria-expanded', 'false');
-			}
-		});
+    // Cerrar menú al hacer click fuera
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden')
+        menuButton.setAttribute('aria-expanded', 'false')
+      }
+    })
 
-		// Cerrar menú al seleccionar una opción
-		document.querySelectorAll('.mobile-menu-link').forEach((link) => {
-			link.addEventListener('click', () => {
-				mobileMenu.classList.add('hidden');
-				menuButton.setAttribute('aria-expanded', 'false');
-			});
-		});
+    // Cerrar menú al seleccionar una opción
+    document.querySelectorAll('.mobile-menu-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden')
+        menuButton.setAttribute('aria-expanded', 'false')
+      })
+    })
 
-		// Cerrar menú al redimensionar
-		window.addEventListener('resize', () => {
-			if (window.innerWidth >= 768) {
-				mobileMenu.classList.add('hidden');
-				menuButton.setAttribute('aria-expanded', 'false');
-			}
-		});
-	});
+    // Cerrar menú al redimensionar
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        mobileMenu.classList.add('hidden')
+        menuButton.setAttribute('aria-expanded', 'false')
+      }
+    })
+  })
 </script>
 
 <style>
-	.nav-link {
-		@apply text-white hover:text-blue-500 transition-colors duration-200 font-medium relative py-1 text-sm lg:text-base
+  .nav-link {
+    @apply text-white hover:text-blue-500 transition-colors duration-200 font-medium relative py-1 text-sm lg:text-base
 		after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px]
 		after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full;
-	}
+  }
 
-	.mobile-menu-link {
-		@apply block px-4 py-2 text-white hover:bg-blue-600/20 transition-colors text-sm;
-	}
+  .mobile-menu-link {
+    @apply block px-4 py-2 text-white hover:bg-blue-600/20 transition-colors text-sm;
+  }
 
-	#mobileMenu {
-		transform: scaleY(0);
-		opacity: 0;
-		transform-origin: top;
-		transition: all 0.3s ease-out;
-	}
+  #mobileMenu {
+    transform: scaleY(0);
+    opacity: 0;
+    transform-origin: top;
+    transition: all 0.3s ease-out;
+  }
 
-	#mobileMenu:not(.hidden) {
-		transform: scaleY(1);
-		opacity: 1;
-	}
+  #mobileMenu:not(.hidden) {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 </style>
