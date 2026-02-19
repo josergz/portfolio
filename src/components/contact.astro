@@ -1,0 +1,62 @@
+---
+import Form from "../components/form.astro";
+---
+
+<section
+  id="contact"
+  class="flex min-h-[70vh] scroll-mt-20 flex-col items-center justify-center p-4 py-12 md:py-16 lg:py-20"
+>
+  <div class="reveal-content mx-auto mb-12 max-w-3xl text-center">
+    <h2
+      class="text-balance text-center text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-white"
+    >
+      ¿Tienes un proyecto en mente?
+    </h2>
+    <p
+      class="mx-auto mt-6 max-w-2xl text-justify text-lg font-medium leading-8 text-slate-700 md:text-center md:text-xl dark:text-slate-300"
+    >
+      Estoy disponible para nuevos proyectos. Hablemos sobre cómo puedo ayudarte
+      a hacer crecer tu negocio online.
+    </p>
+  </div>
+
+  <div class="reveal-content mx-auto w-full max-w-2xl">
+    <Form />
+  </div>
+</section>
+
+<style>
+  .reveal-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal-content:nth-child(2) {
+    transition-delay: 200ms;
+  }
+
+  .is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document
+    .querySelectorAll(".reveal-content")
+    .forEach((el) => observer.observe(el));
+</script>

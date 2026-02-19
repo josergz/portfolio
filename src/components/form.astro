@@ -1,0 +1,255 @@
+<section class="mx-auto max-w-2xl">
+  <div
+    class="rounded-2xl border border-gray-100 bg-white p-8 shadow-lg md:p-10 dark:border-neutral-800 dark:bg-slate-800"
+  >
+    <form id="contactForm" class="space-y-6" novalidate>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="flex flex-col">
+          <label
+            for="name"
+            class="mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Nombre *</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Ej. Juan Pérez"
+            required
+            minlength="3"
+            class="contact-input rounded-lg border border-gray-300 bg-transparent p-3 text-gray-900 outline-none transition-all focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
+          />
+          <span class="error-msg mt-1 hidden text-[11px] text-red-500"
+            >Este campo es obligatorio.</span
+          >
+        </div>
+        <div class="flex flex-col">
+          <label
+            for="email"
+            class="mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Email *</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="correo@ejemplo.com"
+            required
+            class="contact-input rounded-lg border border-gray-300 bg-transparent p-3 text-gray-900 outline-none transition-all focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
+          />
+          <span class="error-msg mt-1 hidden text-[11px] text-red-500"
+            >Email no válido.</span
+          >
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <label
+          for="subject"
+          class="mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Asunto *</label
+        >
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="¿En qué puedo ayudarte?"
+          required
+          class="contact-input rounded-lg border border-gray-300 bg-transparent p-3 text-gray-900 outline-none transition-all focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
+        />
+        <span class="error-msg mt-1 hidden text-[11px] text-red-500"
+          >El asunto es obligatorio.</span
+        >
+      </div>
+
+      <div class="flex flex-col">
+        <div class="mb-2 flex items-center justify-between">
+          <label
+            for="message"
+            class="text-sm font-medium text-gray-900 dark:text-white"
+            >Mensaje *</label
+          >
+          <span id="charCounter" class="text-xs text-gray-500">0 / 500</span>
+        </div>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          placeholder="Cuéntame sobre tu proyecto..."
+          required
+          maxlength="500"
+          class="contact-input resize-none rounded-lg border border-gray-300 bg-transparent p-3 text-gray-900 outline-none transition-all focus:ring-2 focus:ring-blue-500 dark:border-neutral-700 dark:text-white"
+        ></textarea>
+        <span class="error-msg mt-1 hidden text-[11px] text-red-500"
+          >El mensaje es obligatorio.</span
+        >
+      </div>
+
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAACeyA4VQ96lJ7xmF"></div>
+
+      <button
+        type="submit"
+        id="submitBtn"
+        class="flex w-full items-center justify-center rounded-xl bg-blue-600 py-4 font-bold text-white transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30 active:scale-95 disabled:opacity-50"
+      >
+        <span>Enviar mensaje</span>
+      </button>
+
+      <div id="formStatus" class="hidden transition-all duration-300">
+        <div id="statusBox" class="flex items-center rounded-xl border p-4">
+          <div id="statusIcon" class="mr-3"></div>
+          <p id="statusText" class="text-sm font-medium"></p>
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col items-center justify-center space-y-2 border-t border-gray-100 pt-4 dark:border-neutral-800"
+      >
+        <div class="flex items-center space-x-1.5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3.5 w-3.5 text-green-500"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span
+            class="text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-neutral-500"
+            >Conexión Segura</span
+          >
+        </div>
+        <p class="text-center text-[10px] leading-tight text-gray-400">
+          Protegido por Cloudflare Turnstile.
+          <a
+            href="https://www.cloudflare.com/privacypolicy/"
+            target="_blank"
+            class="underline transition hover:text-blue-500">Privacidad</a
+          > y
+          <a
+            href="https://www.cloudflare.com/website-terms/"
+            target="_blank"
+            class="underline transition hover:text-blue-500">Términos</a
+          >.
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style is:global>
+  .cf-turnstile {
+    visibility: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .border-error {
+    border-color: #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.05) !important;
+  }
+</style>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
+></script>
+
+<script>
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+  const inputs = document.querySelectorAll(".contact-input") as NodeListOf<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
+  const formStatus = document.getElementById("formStatus") as HTMLDivElement;
+  const statusBox = document.getElementById("statusBox") as HTMLDivElement;
+  const statusIcon = document.getElementById("statusIcon") as HTMLDivElement;
+  const statusText = document.getElementById(
+    "statusText",
+  ) as HTMLParagraphElement;
+  const charCounter = document.getElementById("charCounter") as HTMLSpanElement;
+
+  // Validación al perder foco (Blur)
+  inputs.forEach((input) => {
+    input.addEventListener("blur", () => validateInput(input));
+    input.addEventListener("input", () => {
+      if (input.classList.contains("border-error")) validateInput(input);
+      if (input.id === "message") {
+        charCounter.textContent = `${(input as HTMLTextAreaElement).value.length} / 500`;
+      }
+    });
+  });
+
+  function validateInput(input: HTMLInputElement | HTMLTextAreaElement) {
+    const errorMsg = input.nextElementSibling as HTMLElement;
+    const isValid = input.checkValidity();
+    if (!isValid) {
+      input.classList.add("border-error");
+      errorMsg?.classList.remove("hidden");
+    } else {
+      input.classList.remove("border-error");
+      errorMsg?.classList.add("hidden");
+    }
+  }
+
+  // Manejo del Envío
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Validar todos antes de enviar
+    let isFormValid = true;
+    inputs.forEach((input) => {
+      validateInput(input);
+      if (!input.checkValidity()) isFormValid = false;
+    });
+
+    if (!isFormValid) return;
+
+    const token = (window as any).turnstile?.getResponse();
+    if (!token) {
+      showStatus("Espera la validación de seguridad...", "error");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    const originalContent = submitBtn.innerHTML;
+    submitBtn.innerHTML = "<span>Enviando...</span>";
+
+    const formData = new FormData(form);
+    formData.set("cf-turnstile-response", token);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        showStatus("¡Mensaje enviado con éxito!", "success");
+        form.reset();
+        charCounter.textContent = "0 / 500";
+      } else {
+        const data = await res.json();
+        showStatus(data.message || "Error al enviar.", "error");
+      }
+    } catch (err) {
+      showStatus("Error de conexión.", "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalContent;
+      (window as any).turnstile?.reset();
+    }
+  });
+
+  function showStatus(msg: string, type: "success" | "error") {
+    formStatus.classList.remove("hidden");
+    statusText.textContent = msg;
+    statusIcon.innerHTML = type === "success" ? "✅" : "❌";
+    statusBox.className = `flex items-center p-4 rounded-xl border ${
+      type === "success"
+        ? "border-green-200 bg-green-50 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400"
+        : "border-red-200 bg-red-50 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400"
+    }`;
+  }
+</script>

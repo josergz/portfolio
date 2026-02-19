@@ -1,0 +1,135 @@
+---
+const services = [
+  {
+    title: "Desarrollo Web",
+    description:
+      "Creación de sitios dinámicos y escalables utilizando las últimas tecnologías del mercado.",
+    icon: "M16 18l6-6-6-6M8 6l-6 6 6 6",
+    color: "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
+    hover: "hover:border-blue-300 dark:hover:border-blue-500/50",
+  },
+  {
+    title: "Diseño UI/UX",
+    description:
+      "Interfaces intuitivas y experiencias de usuario centradas en la conversión y estética.",
+    icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
+    color:
+      "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400",
+    hover: "hover:border-purple-300 dark:hover:border-purple-500/50",
+  },
+  {
+    title: "Responsive Design",
+    description:
+      "Tu web se verá perfecta en cualquier dispositivo: móviles, tablets y escritorio.",
+    icon: "M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2z M12 18h.01",
+    color:
+      "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400",
+    hover: "hover:border-green-300 dark:hover:border-green-500/50",
+  },
+  {
+    title: "Optimización",
+    description:
+      "Mejora de rendimiento para tiempos de carga ultrarrápidos y mejor experiencia.",
+    icon: "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+    color:
+      "bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400",
+    hover: "hover:border-yellow-300 dark:hover:border-yellow-500/50",
+  },
+  {
+    title: "SEO",
+    description:
+      "Estrategias de posicionamiento para que tus clientes te encuentren en Google.",
+    icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+    color: "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
+    hover: "hover:border-red-300 dark:hover:border-red-500/50",
+  },
+  {
+    title: "Despliegue",
+    description:
+      "Configuración de servidores, dominios y CI/CD para lanzar tu proyecto al mundo.",
+    icon: "M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z",
+    color: "bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30 dark:text-cyan-400",
+    hover: "hover:border-cyan-300 dark:hover:border-cyan-500/50",
+  },
+];
+---
+
+<section
+  id="services"
+  class="flex min-h-screen scroll-mt-20 flex-col items-center p-4 py-12 transition-colors duration-300 md:py-16 lg:py-20"
+>
+  <div
+    class="reveal-header mx-auto mb-16 max-w-3xl translate-y-4 text-center opacity-0 transition-all duration-1000 ease-out"
+  >
+    <h2
+      class="text-balance text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-white"
+    >
+      Servicios que ofrezco
+    </h2>
+    <p
+      class="mx-auto mt-6 max-w-2xl text-justify text-lg font-medium leading-8 text-slate-700 md:text-center md:text-xl dark:text-slate-300"
+    >
+      Soluciones completas de desarrollo web adaptadas a las necesidades de tu
+      negocio.
+    </p>
+  </div>
+
+  <div
+    class="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+  >
+    {
+      services.map((service) => (
+        <div
+          class={`service-card group translate-y-8 rounded-2xl border border-slate-200 bg-white p-8 opacity-0 shadow-sm transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800 ${service.hover}`}
+        >
+          <div
+            class={`mb-5 flex h-14 w-14 items-center justify-center rounded-xl transition-transform group-hover:scale-110 ${service.color}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d={service.icon} />
+            </svg>
+          </div>
+
+          <h3 class="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
+            {service.title}
+          </h3>
+          <p class="leading-relaxed text-slate-600 dark:text-slate-400">
+            {service.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const observerOptions = { threshold: 0.1 };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove(
+          "opacity-0",
+          "translate-y-8",
+          "translate-y-4",
+        );
+        entry.target.classList.add("opacity-100", "translate-y-0");
+      }
+    });
+  }, observerOptions);
+
+  // Observar tanto el encabezado como las tarjetas
+  document.querySelectorAll(".reveal-header, .service-card").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
