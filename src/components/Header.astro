@@ -1,135 +1,180 @@
 <header
-  class="sticky top-0 backdrop-blur-sm z-50 py-4 w-full px-4 sm:px-6 lg:px-8"
+  id="mainHeader"
+  class="sticky top-0 z-50 w-full bg-gray-50 px-4 py-4 transition-all duration-300 sm:px-6 lg:px-8 dark:bg-slate-900"
 >
-  <div class="flex justify-between items-center max-w-6xl mx-auto">
-    <!-- Logo -->
+  <div class="mx-auto flex max-w-6xl items-center justify-between">
     <a href="/" class="group flex items-center gap-2">
-      <h1
-        class="font-bold text-lg sm:text-xl text-white group-hover:text-blue-500 transition-colors duration-200"
-      >
-        {'<josergz/>'}
-      </h1>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-50">
+        josergz<span class="text-blue-600">.dev</span>
+      </h2>
     </a>
 
-    <!-- Menú Desktop -->
-    <nav class="hidden md:block">
-      <ul class="flex gap-4 lg:gap-6">
-        <li>
-          <a class="nav-link" href="#top"> Inicio </a>
-        </li>
-        <li>
-          <a class="nav-link" href="#about"> Sobre mí</a>
-        </li>
-        <li>
-          <a class="nav-link" href="#projects"> Proyectos </a>
-        </li>
-        <li>
-          <a class="nav-link" href="mailto:joserdgz.dev@gmail.com">
-            Contacto
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <div class="flex items-center gap-4">
+      <nav class="hidden md:block">
+        <ul class="flex gap-4 lg:gap-6">
+          <li><a href="#services" class="nav-link">Servicios</a></li>
+          <li><a href="#projects" class="nav-link">Proyectos</a></li>
+          <li><a href="#about" class="nav-link">Sobre mí</a></li>
+          <li><a href="#contact" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
 
-    <!-- Menú Mobile -->
-    <div class="md:hidden relative">
       <button
-        id="menuButton"
-        class="text-white hover:text-blue-500 transition-colors p-2"
-        aria-label="Toggle menu"
-        aria-expanded="false"
+        id="themeToggle"
+        class="inline-flex items-center justify-center rounded-lg p-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
       >
         <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          id="theme-toggle-dark-icon"
+          class="hidden h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          ><path
+            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+          ></path></svg
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+        <svg
+          id="theme-toggle-light-icon"
+          class="hidden h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          ><path
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z"
+          ></path></svg
+        >
       </button>
 
-      <!-- Menú desplegable -->
-      <div
-        id="mobileMenu"
-        class="hidden absolute right-0 top-full mt-2 w-48 bg-gray-800/95 backdrop-blur-sm rounded-lg shadow-xl py-2"
-      >
-        <ul class="flex flex-col gap-2">
-          <li><a href="#top" class="mobile-menu-link">Home</a></li>
-          <li><a href="#about" class="mobile-menu-link">About</a></li>
-          <li><a href="#projects" class="mobile-menu-link">Projects</a></li>
-          <li><a href="#contact" class="mobile-menu-link">Contact</a></li>
-        </ul>
+      <div class="relative md:hidden">
+        <button
+          id="menuButton"
+          class="p-2 text-gray-900 dark:text-white"
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div
+          id="mobileMenu"
+          class="absolute right-0 top-full mt-2 hidden w-48 rounded-lg bg-white py-2 shadow-xl dark:bg-slate-800"
+        >
+          <ul class="flex flex-col">
+            <li>
+              <a
+                href="#services"
+                class="block px-4 py-2 hover:bg-gray-100 dark:text-white dark:hover:bg-slate-700"
+                >Servicios</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="block px-4 py-2 hover:bg-gray-100 dark:text-white dark:hover:bg-slate-700"
+                >Proyectos</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="block px-4 py-2 hover:bg-gray-100 dark:text-white dark:hover:bg-slate-700"
+                >Sobre mí</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="block px-4 py-2 hover:bg-gray-100 dark:text-white dark:hover:bg-slate-700"
+                >Contacto</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </header>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuButton = document.getElementById('menuButton')
-    const mobileMenu = document.getElementById('mobileMenu')
-
-    // Toggle menu
-    menuButton.addEventListener('click', (e) => {
-      e.stopPropagation()
-      mobileMenu.classList.toggle('hidden')
-      menuButton.setAttribute(
-        'aria-expanded',
-        mobileMenu.classList.contains('hidden') ? 'false' : 'true'
-      )
-    })
-
-    // Cerrar menú al hacer click fuera
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden')
-        menuButton.setAttribute('aria-expanded', 'false')
-      }
-    })
-
-    // Cerrar menú al seleccionar una opción
-    document.querySelectorAll('.mobile-menu-link').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden')
-        menuButton.setAttribute('aria-expanded', 'false')
-      })
-    })
-
-    // Cerrar menú al redimensionar
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768) {
-        mobileMenu.classList.add('hidden')
-        menuButton.setAttribute('aria-expanded', 'false')
-      }
-    })
-  })
-</script>
-
 <style>
   .nav-link {
-    @apply text-white hover:text-blue-500 transition-colors duration-200 font-medium relative py-1 text-sm lg:text-base
-		after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px]
-		after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-full;
-  }
-
-  .mobile-menu-link {
-    @apply block px-4 py-2 text-white hover:bg-blue-600/20 transition-colors text-sm;
-  }
-
-  #mobileMenu {
-    transform: scaleY(0);
-    opacity: 0;
-    transform-origin: top;
-    transition: all 0.3s ease-out;
-  }
-
-  #mobileMenu:not(.hidden) {
-    transform: scaleY(1);
-    opacity: 1;
+    @apply relative py-1 text-sm font-medium text-gray-900 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 after:content-[''] hover:text-blue-500 hover:after:w-full lg:text-base dark:text-white;
   }
 </style>
+
+<script is:inline>
+  // --- Lógica del Tema Oscuro ---
+  const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+  const themeToggleLightIcon = document.getElementById(
+    "theme-toggle-light-icon",
+  );
+
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    themeToggleLightIcon.classList.remove("hidden");
+    document.documentElement.classList.add("dark");
+  } else {
+    themeToggleDarkIcon.classList.remove("hidden");
+    document.documentElement.classList.remove("dark");
+  }
+
+  document.getElementById("themeToggle").addEventListener("click", function () {
+    themeToggleDarkIcon.classList.toggle("hidden");
+    themeToggleLightIcon.classList.toggle("hidden");
+
+    if (localStorage.getItem("color-theme")) {
+      if (localStorage.getItem("color-theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      }
+    } else {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      }
+    }
+  });
+
+  // --- Lógica del Menú y Scroll ---
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const header = document.getElementById("mainHeader");
+
+  menuButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      header.classList.add(
+        "backdrop-blur-md",
+        "bg-white/80",
+        "dark:bg-slate-900/80",
+        "shadow-sm",
+      );
+    } else {
+      header.classList.remove(
+        "backdrop-blur-md",
+        "bg-white/80",
+        "dark:bg-slate-900/80",
+        "shadow-sm",
+      );
+    }
+  });
+</script>
