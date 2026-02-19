@@ -1,9 +1,14 @@
-export const prerender = false; // <--- ESTO ES LA CLAVE
+export const prerender = false;
 
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// Función para leer env vars tanto en local como en Vercel sin errores de tipos
+const getEnv = (key: string) => {
+  return import.meta.env[key] ?? (globalThis as any).process?.env?.[key];
+};
+
+const resend = new Resend(getEnv("RESEND_API_KEY"));
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
@@ -15,6 +20,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     const subject = data.get("subject")?.toString().trim();
     const message = data.get("message")?.toString().trim();
 
+    // 1. Validación de campos
     if (!token || !name || !email || !subject || !message) {
       return new Response(
         JSON.stringify({ message: "Faltan campos obligatorios." }),
@@ -22,8 +28,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
-    // Verificación Turnstile
-    const secretKey = import.meta.env.TURNSTILE_SECRET_KEY;
+    // 2. Verificación Turnstile (Cloudflare)
+    const secretKey = getEnv("TURNSTILE_SECRET_KEY");
     const verifyRes = await fetch(
       "https://challenges.cloudflare.com/turnstile/v0/siteverify",
       {
@@ -32,6 +38,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         body: `secret=${secretKey}&response=${token}`,
       },
     );
+
     const verifyData = await verifyRes.json();
 
     if (!verifyData.success) {
@@ -41,42 +48,42 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
-    const cleanMessage = message.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    // 3. Envío con Resend
+    const fromEmail = getEnv("RESEND_FROM"); // Debe ser noreply@josergz.dev
+    const toEmail = getEnv("RESEND_TO");
 
-    // ENVÍO USANDO TUS VARIABLES DEL .ENV
-    await resend.emails.send({
-      from: `Form Contact (${name}) <${import.meta.env.RESEND_FROM}>`,
-      to: import.meta.env.RESEND_TO,
+    const { error } = await resend.emails.send({
+      from: `Contacto Web <${fromEmail}>`,
+      to: [toEmail],
       replyTo: email,
-      subject: `[${subject}]`,
+      subject: `[Web] ${subject}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background-color: #ffffff;">
-          <div style="background-color: #2563eb; padding: 30px 20px; text-align: center;">
-            <h1 style="color: #ffffff; margin: 0; font-size: 22px;">Tiene un nuevo mensaje de ${name}</h1>
+        <div style="font-family: sans-serif; padding: 20px; color: #333;">
+          <h2>Nuevo mensaje de contacto</h2>
+          <p><strong>Nombre:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Asunto:</strong> ${subject}</p>
+          <div style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 5px;">
+            ${message.replace(/\n/g, "<br>")}
           </div>
-          <div style="padding: 30px; color: #1e293b; line-height: 1.8;">
-            <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #f1f5f9;">
-              <p style="margin: 5px 0; font-size: 15px;"><strong>Nombre:</strong> ${name}</p>
-              <p style="margin: 5px 0; font-size: 15px;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #2563eb;">${email}</a></p>
-              <p style="margin: 5px 0; font-size: 15px;"><strong>Asunto:</strong> ${subject}</p>
-            </div>
-            <p style="font-weight: bold; margin-bottom: 10px; font-size: 17px; color: #0f172a;">Mensaje:</p>
-            <div style="font-size: 16px; color: #334155; white-space: pre-wrap; margin: 0; padding: 0;">${cleanMessage}</div>
-          </div>
-          <div style="background-color: #f1f5f9; padding: 25px; text-align: center; border-top: 1px solid #e2e8f0;">
-            <a href="mailto:${email}?subject=RE: ${encodeURIComponent(subject)}" style="display: inline-block; background-color: #2563eb; color: #ffffff; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px;">Responder</a>
-            <p style="font-size: 12px; color: #94a3b8; margin-top: 20px;">Enviado desde josergz.dev | IP: ${clientAddress}</p>
-          </div>
+          <p style="font-size: 10px; color: #999; margin-top: 20px;">IP: ${clientAddress}</p>
         </div>
       `,
     });
 
+    if (error) {
+      return new Response(JSON.stringify({ message: error.message }), {
+        status: 400,
+      });
+    }
+
     return new Response(JSON.stringify({ message: "¡Enviado!" }), {
       status: 200,
     });
-  } catch (error) {
-    return new Response(JSON.stringify({ message: "Error en el servidor." }), {
-      status: 500,
-    });
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ message: "Error interno.", error: String(err) }),
+      { status: 500 },
+    );
   }
 };
