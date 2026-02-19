@@ -4,6 +4,6 @@ import vercel from "@astrojs/vercel/serverless";
 
 export default defineConfig({
   integrations: [tailwind()],
-  output: "vercel",
+  output: "server",
   adapter: vercel(),
 });
