@@ -1,59 +1,119 @@
 ---
-import Git from './icons/git.astro';
-import Github from '../components/icons/github.astro';
-import Html from './icons/html.astro';
-import Css from './icons/css.astro';
-import Sass from './icons/sass.astro';
-import Bootstrap from './icons/bootstrap.astro';
-import Tailwind from './icons/tailwind.astro';
-import Javascript from './icons/javascript.astro';
-import Astroicon from './icons/astroicon.astro';
-import Code from './icons/code.astro';
-import Rocket from './icons/rocket.astro';
+import Git from "./icons/git.astro";
+import Github from "../components/icons/github.astro";
+import Html from "./icons/html.astro";
+import Css from "./icons/css.astro";
+import Sass from "./icons/sass.astro";
+import Bootstrap from "./icons/bootstrap.astro";
+import Tailwind from "./icons/tailwind.astro";
+import Javascript from "./icons/javascript.astro";
+import Astroicon from "./icons/astroicon.astro";
+
+const SKILLS = [
+  { name: "HTML", icon: Html },
+  { name: "CSS", icon: Css },
+  { name: "Sass", icon: Sass },
+  { name: "Bootstrap", icon: Bootstrap },
+  { name: "Tailwind", icon: Tailwind },
+  { name: "JavaScript", icon: Javascript },
+  { name: "Astro", icon: Astroicon },
+  { name: "Git", icon: Git },
+  { name: "GitHub", icon: Github },
+];
 ---
 
-<section class="flex flex-col w-full space-y-10 p-4 md:p-10">
-	<h1
-		class="flex items-center align-middle justify-center text-center gap-2 font-semibold text-3xl"
-	>
-		<Rocket class="size-8" /> Habilidades
-	</h1>
-	<ul class="flex m-auto gap-10 flex-wrap justify-center">
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Html class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">HTML</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Css class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">CSS</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Sass class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">Sass</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Bootstrap class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">Bootstrap</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Tailwind class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">Tailwind</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Javascript class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">JavaScript</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Astroicon class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">Astro</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Git class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">Git</span>
-		</li>
-		<li class="flex flex-col items-center gap-2 font-medium text-xl">
-			<Github class="size-16 transition-all duration-300 hover:scale-125" />
-			<span class="mt-1 text-sm text-white/90">GitHub</span>
-		</li>
-	</ul>
+<section
+  id="skills"
+  class="flex w-full scroll-mt-20 flex-col space-y-12 overflow-hidden p-4 py-12 md:py-16 lg:py-20"
+>
+  <div
+    class="reveal-container flex flex-col items-center gap-4 text-center opacity-0"
+  >
+    <h2
+      class="text-balance text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-white"
+    >
+      Habilidades
+    </h2>
+    <p
+      class="mx-auto mt-6 max-w-2xl text-justify text-lg font-medium leading-8 text-slate-700 md:text-center md:text-xl dark:text-slate-300"
+    >
+      Tecnologías y herramientas que utilizo para dar vida a tus ideas digitales
+    </p>
+  </div>
+
+  <ul
+    class="m-auto flex max-w-5xl flex-wrap items-center justify-center gap-8 md:gap-12"
+  >
+    {
+      SKILLS.map(({ name, icon: Icon }, index) => (
+        <li
+          class="skill-item flex flex-col items-center gap-3 opacity-0"
+          style={`--index: ${index}`}
+        >
+          <div class="group relative flex items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white/80 p-5 text-slate-900 shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-xl hover:shadow-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+            <Icon class="relative z-10 size-12 transition-transform duration-500 group-hover:rotate-3 group-hover:scale-110 md:size-16" />
+
+            <div class="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-blue-500/30" />
+          </div>
+
+          <span class="text-xs font-black uppercase tracking-widest text-slate-500 transition-colors group-hover:text-blue-500 md:text-sm dark:text-slate-400">
+            {name}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
 </section>
+
+<style>
+  /* Animación para el contenedor de títulos */
+  .reveal-container.is-visible {
+    animation: revealTitle 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes revealTitle {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .skill-item {
+    transform: translateY(40px);
+    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .skill-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--index) * 80ms);
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    threshold: 0.2,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  }, observerOptions);
+
+  // Observamos el contenedor del título (que ahora incluye el subtítulo)
+  const headerContainer = document.querySelector(".reveal-container");
+  if (headerContainer) observer.observe(headerContainer);
+
+  document
+    .querySelectorAll(".skill-item")
+    .forEach((el) => observer.observe(el));
+</script>
