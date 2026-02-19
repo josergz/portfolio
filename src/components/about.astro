@@ -1,52 +1,109 @@
----
-import User from './icons/user.astro';
----
+<section
+  id="about"
+  class="mx-auto flex w-full max-w-5xl scroll-mt-20 flex-col space-y-12 p-4 py-12 md:py-16 lg:py-20"
+>
+  <h2
+    class="reveal text-balance text-center text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl"
+  >
+    Sobre mí
+  </h2>
 
-<section id="about" class="flex flex-col w-full space-y-10 p-4 md:p-10">
-	<h1
-		class="flex items-center align-middle justify-center text-center gap-2 font-semibold text-3xl"
-	>
-		<User class="size-8" /> Sobre mí
-	</h1>
-	<div class="flex flex-col md:flex-row items-center m-auto gap-8">
-		<img
-			loading="lazy"
-			class="order-1 md:order-2 mx-auto md:mx-0 md:w-48 md:h-48 size-48 rounded-full"
-			src="/img/profile.webp"
-			alt="Profile image José Rodríguez"
-		/>
-		<strong
-			class="order-2 md:order-1 leading-relaxed text-left font-normal space-y-4 md:max-w-xl"
-		>
-			<p>
-				Soy <span class="text-yellow-300/90 font-semibold"
-					>Ingeniero en Sistemas Computacionales</span
-				>, con especialización en
-				<span class="text-yellow-300/90 font-semibold"
-					>Ingeniería de Software</span
-				>.
-			</p>
-			<p>
-				Mi pasión por la <span class="text-yellow-300/90 font-semibold"
-					>programación web</span
-				> me ha permitido desarrollar una sólida experiencia en tecnologías como
-				<span class="text-yellow-300/90 font-semibold">HTML</span>, <span
-					class="text-yellow-300/90 font-semibold">CSS</span
-				>, <span class="text-yellow-300/90 font-semibold">JavaScript</span> y
-				<span class="text-yellow-300/90 font-semibold">frameworks modernos</span
-				>, aplicándolas en diversos proyectos.
-			</p>
-			<p>
-				Además, debido a mi formación académica cuento con experiencia en <span
-					class="text-yellow-300/90 font-semibold">administración de redes</span
-				>, <span class="text-yellow-300/90 font-semibold">soporte técnico</span>
-				y análisis de datos geoespaciales mediante el uso de software <span
-					class="text-yellow-300/90 font-semibold">SIG</span
-				>. Mi enfoque se centra en crear soluciones
-				<span class="text-yellow-300/90 font-semibold">eficientes</span>, <span
-					class="text-yellow-300/90 font-semibold">escalables</span
-				> y de alto rendimiento.
-			</p>
-		</strong>
-	</div>
+  <div
+    class="flex flex-col items-center justify-center gap-10 md:flex-row md:gap-16"
+  >
+    <div class="reveal-left order-1 flex-shrink-0 md:order-2">
+      <div class="group relative">
+        <div
+          class="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 opacity-25 blur transition duration-1000 group-hover:opacity-50"
+        >
+        </div>
+        <img
+          loading="lazy"
+          class="relative size-48 rounded-full border-2 border-slate-200 object-cover shadow-xl dark:border-slate-800 md:size-56"
+          src="/img/profile.webp"
+          alt="Foto de perfil de José Rodríguez"
+        />
+      </div>
+    </div>
+
+    <div
+      class="reveal-right order-2 max-w-2xl space-y-6 text-justify text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:order-1"
+    >
+      <p>
+        Soy <span class="font-semibold text-blue-600 dark:text-blue-400"
+          >Ingeniero en Sistemas Computacionales</span
+        >
+        egresado del <span class="font-medium text-slate-900 dark:text-white"
+          >TecNM Campus de Los Ríos</span
+        >, con especialidad en
+        <span class="font-semibold text-blue-600 dark:text-blue-400"
+          >Ingeniería de Software</span
+        >.
+      </p>
+
+      <p>
+        Actualmente me desempeño como <span
+          class="font-medium text-slate-900 dark:text-white"
+          >desarrollador frontend freelance</span
+        > donde transformo ideas en productos digitales funcionales y modernos. Mi
+        prioridad es siempre entregar soluciones con alto rendimiento y un código
+        limpio y mantenible.
+      </p>
+
+      <p>
+        Mi enfoque se centra en aplicar las <span
+          class="font-medium text-slate-900 dark:text-white"
+          >mejores prácticas</span
+        >
+        de la industria, asegurando que cada proyecto no solo sea visualmente impactante,
+        sino también escalable y eficiente a largo plazo.
+      </p>
+    </div>
+  </div>
 </section>
+
+<style>
+  /* Clases de estado inicial para la animación */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease-out;
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease-out;
+  }
+
+  /* Clase que se activa al hacer scroll */
+  .show {
+    opacity: 1;
+    transform: translate(0);
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.15,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, observerOptions);
+
+  // Seleccionamos todos los elementos a animar
+  document
+    .querySelectorAll(".reveal, .reveal-left, .reveal-right")
+    .forEach((el) => observer.observe(el));
+</script>
