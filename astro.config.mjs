@@ -6,4 +6,7 @@ export default defineConfig({
   integrations: [tailwind()],
   output: "server",
   adapter: vercel(),
+  security: {
+    checkOrigin: false, // Prueba desactivando esto temporalmente
+  },
 });
