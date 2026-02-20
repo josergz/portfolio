@@ -85,10 +85,6 @@
         >
       </div>
 
-      <div class="flex justify-center py-2">
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAACeyA4VQ96lJ7xmF"></div>
-      </div>
-
       <button
         type="submit"
         id="submitBtn"
@@ -113,9 +109,6 @@
     background-color: rgba(239, 68, 68, 0.05) !important;
   }
 </style>
-
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
-></script>
 
 <script>
   const form = document.getElementById("contactForm") as HTMLFormElement;
@@ -162,18 +155,11 @@
 
     if (!isFormValid) return;
 
-    const token = (window as any).turnstile?.getResponse();
-    if (!token) {
-      showStatus("Por favor, completa el captcha.", "error");
-      return;
-    }
-
     submitBtn.disabled = true;
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = "<span>Enviando...</span>";
 
     const formData = new FormData(form);
-    formData.set("cf-turnstile-response", token);
 
     try {
       const res = await fetch("/api/contact", {
@@ -186,12 +172,12 @@
       if (res.ok) {
         showStatus("¡Mensaje enviado!", "success");
         form.reset();
-        (window as any).turnstile?.reset();
+        charCounter.textContent = "0 / 500";
       } else {
         showStatus(result.message || "Error al enviar", "error");
       }
     } catch (err) {
-      showStatus("Error de red.", "error");
+      showStatus("Error de red o servidor.", "error");
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;

@@ -12,13 +12,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
     const data = await request.formData();
 
-    // Extraemos los datos pero NO validamos el token de Cloudflare por ahora
     const name = data.get("name")?.toString().trim();
     const email = data.get("email")?.toString().trim();
     const subject = data.get("subject")?.toString().trim();
     const message = data.get("message")?.toString().trim();
 
-    // Solo validamos que los campos de texto no estén vacíos
+    // 1. Validación básica
     if (!name || !email || !subject || !message) {
       return new Response(
         JSON.stringify({ message: "Faltan campos obligatorios." }),
@@ -26,23 +25,25 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       );
     }
 
-    // --- CLOUDFLARE DESHABILITADO MOMENTÁNEAMENTE ---
-    console.log("Omitiendo validación de Turnstile para pruebas...");
-    // ------------------------------------------------
-
     const fromEmail = getEnv("RESEND_FROM");
     const toEmail = getEnv("RESEND_TO");
 
-    // Intento de envío directo con Resend
+    // 2. Intento de envío directo con Resend
     const { data: resendData, error } = await resend.emails.send({
-      from: `Prueba Directa <${fromEmail}>`,
+      from: `Web Contact <${fromEmail}>`,
       to: [toEmail],
       replyTo: email,
-      subject: `[TEST SIN CAPTCHA] ${subject}`,
+      subject: `[Web] ${subject}`,
       html: `
-        <p><strong>De:</strong> ${name} (${email})</p>
-        <p><strong>Mensaje:</strong> ${message}</p>
-        <p style="color: red;">Este correo se envió omitiendo el captcha.</p>
+        <div style="font-family: sans-serif; color: #333;">
+          <h2>Nuevo mensaje de contacto</h2>
+          <p><strong>De:</strong> ${name} (${email})</p>
+          <p><strong>Asunto:</strong> ${subject}</p>
+          <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; margin-top: 20px;">
+            ${message.replace(/\n/g, "<br>")}
+          </div>
+          <p style="font-size: 11px; color: #999; margin-top: 20px;">Enviado desde el portfolio | IP: ${clientAddress}</p>
+        </div>
       `,
     });
 
@@ -50,7 +51,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       console.error("Error de Resend:", error);
       return new Response(
         JSON.stringify({
-          message: "Resend falló",
+          message: "Resend falló al enviar.",
           error: error.message,
         }),
         { status: 400 },
@@ -59,15 +60,16 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     return new Response(
       JSON.stringify({
-        message: "Resend funciona perfectamente.",
+        message: "¡Mensaje enviado con éxito!",
         id: resendData?.id,
       }),
       { status: 200 },
     );
   } catch (err) {
+    console.error("Error en el servidor:", err);
     return new Response(
       JSON.stringify({
-        message: "Error crítico en el servidor.",
+        message: "Error interno del servidor.",
         error: String(err),
       }),
       { status: 500 },
