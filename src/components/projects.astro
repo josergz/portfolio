@@ -11,7 +11,7 @@ import Css from "./icons/css.astro";
 import Vscode from "./icons/vscode.astro";
 import Link from "./icons/link.astro";
 
-// Importación de imágenes desde la nueva ruta en src/assets/img/
+// Importación de imágenes (Asegúrate que estas rutas sean exactas)
 import imgVscode from "../assets/img/vscodetheme-preview-1200.avif";
 import imgPortfolio from "../assets/img/portfolio-preview-1200.webp";
 import imgWeather from "../assets/img/weather-preview-1200.webp";
@@ -136,9 +136,8 @@ const PROJECTS = [
               <Image
                 src={image}
                 alt={`Vista previa de ${title}`}
-                width={500}
-                height={280}
-                loading="lazy"
+                width={600}
+                height={340}
                 class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:rotate-1 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
@@ -193,6 +192,7 @@ const PROJECTS = [
 </section>
 
 <style>
+  /* Mantenemos tus animaciones originales */
   .reveal-container.is-visible {
     animation: revealTitle 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
