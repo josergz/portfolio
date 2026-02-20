@@ -2,50 +2,47 @@
 import "@fontsource-variable/onest";
 import Header from "../components/Header.astro";
 import Footer from "../components/footer.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
 
 interface Props {
   title: string;
   description: string;
 }
-const siteUrl = "https://josergz.dev",
-  siteImg = "/img/og-preview.png",
-  typeUrl = "website";
 
 const { description, title } = Astro.props;
-import ScrollToTop from "../components/ScrollToTop.astro";
+const siteUrl = "https://www.josergz.dev/";
+const siteImg = "/img/og-preview.png";
+const typeUrl = "website";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <!-- HTML Meta Tags -->
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    <!-- URL canónica -->
-    <link rel="canonical" href="https://www.josergz.dev/" />
+    <link rel="canonical" href={siteUrl} />
 
-    <!-- Facebook Meta Tags -->
     <meta property="og:url" content={siteUrl} />
     <meta property="og:type" content={typeUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={siteImg} />
+    <meta property="og:image" content={new URL(siteImg, Astro.url)} />
 
-    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="josergz.dev" />
     <meta property="twitter:url" content={siteUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={siteImg} />
+    <meta name="twitter:image" content={new URL(siteImg, Astro.url)} />
   </head>
 
   <body
-    class="relative flex min-h-screen flex-col bg-gray-50 dark:bg-slate-900"
+    class="relative flex min-h-screen flex-col bg-gray-50 transition-colors duration-300 dark:bg-slate-900"
   >
     <Header />
     <main class="flex-grow">
@@ -57,23 +54,24 @@ import ScrollToTop from "../components/ScrollToTop.astro";
 </html>
 
 <style is:global>
-  :root {
+  html {
+    /* "Onest Variable" con font-display: swap (Fontsource lo incluye por defecto) */
+    font-family:
+      "Onest Variable",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    scroll-behavior: smooth;
   }
 
-  html {
-    font-family: "Onest Variable", system-ui, sans-serif;
-    scroll-behavior: smooth;
+  /* Mejora de accesibilidad: Contraste y legibilidad */
+  body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   section[id] {
     scroll-mt: 5rem;
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overscroll-behavior: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -82,7 +80,17 @@ import ScrollToTop from "../components/ScrollToTop.astro";
     }
   }
 
+  /* Scrollbar personalizado con buen contraste */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
   .dark ::-webkit-scrollbar {
-    background-color: #0f172a; /* slate-900 */
+    background-color: #0f172a;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: #334155;
+    border-radius: 10px;
   }
 </style>

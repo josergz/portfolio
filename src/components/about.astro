@@ -1,3 +1,9 @@
+---
+import { Image } from "astro:assets";
+// Importamos la imagen desde la nueva ruta
+import profileImg from "../assets/img/profile.webp";
+---
+
 <section
   id="about"
   class="mx-auto flex w-full max-w-5xl scroll-mt-20 flex-col space-y-12 p-4 py-12 md:py-16 lg:py-20"
@@ -17,26 +23,28 @@
           class="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 opacity-25 blur transition duration-1000 group-hover:opacity-50"
         >
         </div>
-        <img
+        <Image
+          src={profileImg}
+          alt="Foto de perfil de José Rodríguez"
+          width={250}
+          height={250}
           loading="lazy"
           class="relative size-48 rounded-full border-2 border-slate-200 object-cover shadow-xl dark:border-slate-800 md:size-56"
-          src="/img/profile.webp"
-          alt="Foto de perfil de José Rodríguez"
         />
       </div>
     </div>
 
     <div
-      class="reveal-right order-2 max-w-2xl space-y-6 text-justify text-lg leading-relaxed text-slate-700 dark:text-slate-300 md:order-1"
+      class="reveal-right order-2 max-w-2xl space-y-6 text-justify text-lg leading-relaxed text-slate-800 dark:text-slate-200 md:order-1"
     >
       <p>
-        Soy <span class="font-semibold text-blue-600 dark:text-blue-400"
+        Soy <span class="font-semibold text-blue-700 dark:text-blue-400"
           >Ingeniero en Sistemas Computacionales</span
         >
         egresado del <span class="font-medium text-slate-900 dark:text-white"
           >TecNM Campus de Los Ríos</span
         >, con especialidad en
-        <span class="font-semibold text-blue-600 dark:text-blue-400"
+        <span class="font-semibold text-blue-700 dark:text-blue-400"
           >Ingeniería de Software</span
         >.
       </p>
@@ -63,7 +71,6 @@
 </section>
 
 <style>
-  /* Clases de estado inicial para la animación */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -79,8 +86,6 @@
     transform: translateX(-50px);
     transition: all 0.8s ease-out;
   }
-
-  /* Clase que se activa al hacer scroll */
   .show {
     opacity: 1;
     transform: translate(0);
@@ -102,7 +107,6 @@
     });
   }, observerOptions);
 
-  // Seleccionamos todos los elementos a animar
   document
     .querySelectorAll(".reveal, .reveal-left, .reveal-right")
     .forEach((el) => observer.observe(el));

@@ -1,6 +1,6 @@
 <header
   id="mainHeader"
-  class="sticky top-0 z-50 w-full bg-gray-50 px-4 py-4 transition-all duration-300 sm:px-6 lg:px-8 dark:bg-slate-900"
+  class="sticky top-0 z-50 w-full bg-gray-50 px-4 py-4 transition-all duration-300 dark:bg-slate-900 sm:px-6 lg:px-8"
 >
   <div class="mx-auto flex max-w-6xl items-center justify-between">
     <a href="/" class="group flex items-center gap-2">
@@ -21,6 +21,7 @@
 
       <button
         id="themeToggle"
+        aria-label="Cambiar tema de color"
         class="inline-flex items-center justify-center rounded-lg p-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
       >
         <svg
@@ -104,7 +105,7 @@
 
 <style>
   .nav-link {
-    @apply relative py-1 text-sm font-medium text-gray-900 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 after:content-[''] hover:text-blue-500 hover:after:w-full lg:text-base dark:text-white;
+    @apply relative py-1 text-sm font-medium text-gray-900 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 after:content-[''] hover:text-blue-500 hover:after:w-full dark:text-white lg:text-base;
   }
 </style>
 
