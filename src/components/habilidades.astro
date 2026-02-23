@@ -30,12 +30,12 @@ const SKILLS = [
     class="reveal-container flex flex-col items-center gap-4 text-center opacity-0"
   >
     <h2
-      class="text-balance text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-white"
+      class="text-balance text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-5xl"
     >
       Habilidades
     </h2>
     <p
-      class="mx-auto mt-6 max-w-2xl text-justify text-lg font-medium leading-8 text-slate-700 md:text-center md:text-xl dark:text-slate-300"
+      class="mx-auto mt-6 max-w-2xl text-justify text-lg font-medium leading-8 text-slate-700 dark:text-slate-300 md:text-center md:text-xl"
     >
       Tecnologías y herramientas que utilizo para dar vida a tus ideas digitales
     </p>
@@ -58,7 +58,7 @@ const SKILLS = [
             <div class="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-blue-500/30" />
           </div>
 
-          <span class="text-xs font-black uppercase tracking-widest text-slate-500 transition-colors group-hover:text-blue-500 md:text-sm dark:text-slate-400">
+          <span class="text-xs font-black uppercase tracking-widest text-slate-500 transition-colors group-hover:text-blue-500 dark:text-slate-400 md:text-sm">
             {name}
           </span>
         </li>
@@ -68,7 +68,6 @@ const SKILLS = [
 </section>
 
 <style>
-  /* Animación para el contenedor de títulos */
   .reveal-container.is-visible {
     animation: revealTitle 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
