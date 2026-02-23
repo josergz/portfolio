@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+// 1. ICONOS (Importados y listos para usar)
 import GitHubIcon from "../components/icons/github.astro";
 import Astroicon from "./icons/astroicon.astro";
 import Tailwind from "./icons/tailwind.astro";
@@ -10,12 +10,6 @@ import Sass from "./icons/sass.astro";
 import Css from "./icons/css.astro";
 import Vscode from "./icons/vscode.astro";
 import Link from "./icons/link.astro";
-
-// Importación de imágenes (Asegúrate que estas rutas sean exactas)
-import imgVscode from "../assets/img/vscodetheme-preview-1200.avif";
-import imgPortfolio from "../assets/img/portfolio-preview-1200.webp";
-import imgWeather from "../assets/img/weather-preview-1200.webp";
-import imgAdvice from "../assets/img/advice-preview-1200.webp";
 
 const TAGS = {
   ASTRO: {
@@ -67,7 +61,7 @@ const PROJECTS = [
       "Un tema personalizado para Visual Studio Code, basado en One Dark con colores vibrantes.",
     link: "https://marketplace.visualstudio.com/items?itemName=josergz.one-dark-vibrant-theme",
     github: "https://github.com/josergz/one-dark-vibrant-theme",
-    image: imgVscode,
+    image: "/assets/img/vscodetheme-preview-1200.avif",
     tags: [TAGS.VSCODE],
   },
   {
@@ -76,7 +70,7 @@ const PROJECTS = [
       "Portafolio profesional creado con Astro y Tailwind, responsivo y optimizado.",
     link: "https://portfolio-one-khaki-21.vercel.app/",
     github: "https://github.com/josergz/portfolio",
-    image: imgPortfolio,
+    image: "/assets/img/portfolio.webp",
     tags: [TAGS.ASTRO, TAGS.TAILWIND],
   },
   {
@@ -85,7 +79,7 @@ const PROJECTS = [
       "App interactiva que muestra el clima actual consumiendo datos de una API pública.",
     link: "https://weather-app-itsr.vercel.app/",
     github: "https://github.com/josergz/weather_app",
-    image: imgWeather,
+    image: "/assets/img/weather-preview-1200.webp",
     tags: [TAGS.JAVASCRIPT, TAGS.BOOTSTRAP],
   },
   {
@@ -94,7 +88,7 @@ const PROJECTS = [
       "Generador de consejos aleatorios consumiendo una API dinámica.",
     link: "https://advice-generator-app-lemon.vercel.app/",
     github: "https://github.com/josergz/advice-generator-app",
-    image: imgAdvice,
+    image: "/assets/img/advice-preview-1200.webp",
     tags: [TAGS.HTML, TAGS.CSS, TAGS.SASS, TAGS.JAVASCRIPT],
   },
 ];
@@ -133,11 +127,10 @@ const PROJECTS = [
             <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
             <div class="relative h-48 overflow-hidden">
-              <Image
+              <img
                 src={image}
                 alt={`Vista previa de ${title}`}
-                width={600}
-                height={340}
+                loading="lazy"
                 class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:rotate-1 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
@@ -168,7 +161,6 @@ const PROJECTS = [
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Ver código del proyecto ${title}`}
                   class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-100 px-3 py-2.5 text-xs font-bold text-slate-900 transition-all hover:bg-slate-200 dark:border-slate-600 dark:bg-slate-700/50 dark:text-white dark:hover:bg-slate-600"
                 >
                   <GitHubIcon class="size-4" /> Código
@@ -177,7 +169,6 @@ const PROJECTS = [
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Ver demo del proyecto ${title}`}
                   class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-700 px-3 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-600/20 transition-all hover:bg-blue-800"
                 >
                   <Link class="size-3" /> Demo
@@ -192,7 +183,6 @@ const PROJECTS = [
 </section>
 
 <style>
-  /* Mantenemos tus animaciones originales */
   .reveal-container.is-visible {
     animation: revealTitle 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
@@ -217,16 +207,18 @@ const PROJECTS = [
 </style>
 
 <script>
-  const observerOptions = { threshold: 0.15 };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("is-visible");
-    });
-  }, observerOptions);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("is-visible");
+      });
+    },
+    { threshold: 0.1 },
+  );
 
-  const headerContainer = document.querySelector("#projects .reveal-container");
-  if (headerContainer) observer.observe(headerContainer);
-  document
-    .querySelectorAll(".project-card")
-    .forEach((el) => observer.observe(el));
+  const header = document.querySelector("#projects .reveal-container");
+  if (header) observer.observe(header);
+
+  const cards = document.querySelectorAll("#projects .project-card");
+  cards.forEach((el) => observer.observe(el));
 </script>
