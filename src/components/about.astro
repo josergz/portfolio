@@ -1,9 +1,3 @@
----
-import { Image } from "astro:assets";
-// Importamos la imagen desde la nueva ruta
-import profileImg from "../assets/img/profile.webp";
----
-
 <section
   id="about"
   class="mx-auto flex w-full max-w-5xl scroll-mt-20 flex-col space-y-12 p-4 py-12 md:py-16 lg:py-20"
@@ -23,12 +17,13 @@ import profileImg from "../assets/img/profile.webp";
           class="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 opacity-25 blur transition duration-1000 group-hover:opacity-50"
         >
         </div>
-        <Image
-          src={profileImg}
+        <img
+          src="/assets/img/profile.webp"
           alt="Foto de perfil de José Rodríguez"
-          width={250}
-          height={250}
           loading="lazy"
+          decoding="async"
+          width="250"
+          height="250"
           class="relative size-48 rounded-full border-2 border-slate-200 object-cover shadow-xl dark:border-slate-800 md:size-56"
         />
       </div>
