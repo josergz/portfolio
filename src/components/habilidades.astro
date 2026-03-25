@@ -8,17 +8,36 @@ import Bootstrap from "./icons/bootstrap.astro";
 import Tailwind from "./icons/tailwind.astro";
 import Javascript from "./icons/javascript.astro";
 import Astroicon from "./icons/astroicon.astro";
+import React from "./icons/react.astro";
+import Typescript from "./icons/typescript.astro";
 
 const SKILLS = [
-  { name: "HTML", icon: Html },
-  { name: "CSS", icon: Css },
-  { name: "Sass", icon: Sass },
-  { name: "Bootstrap", icon: Bootstrap },
-  { name: "Tailwind", icon: Tailwind },
-  { name: "JavaScript", icon: Javascript },
-  { name: "Astro", icon: Astroicon },
-  { name: "Git", icon: Git },
-  { name: "GitHub", icon: Github },
+  {
+    category: "Frontend",
+    items: [
+      { name: "HTML", icon: Html },
+      { name: "JavaScript", icon: Javascript },
+      { name: "Astro", icon: Astroicon },
+      { name: "React", icon: React },
+      { name: "TypeScript", icon: Typescript },
+    ],
+  },
+  {
+    category: "Estilos",
+    items: [
+      { name: "CSS", icon: Css },
+      { name: "Tailwind", icon: Tailwind },
+      { name: "Sass", icon: Sass },
+      { name: "Bootstrap", icon: Bootstrap },
+    ],
+  },
+  {
+    category: "Herramientas",
+    items: [
+      { name: "Git", icon: Git },
+      { name: "GitHub", icon: Github },
+    ],
+  },
 ];
 ---
 
@@ -41,30 +60,45 @@ const SKILLS = [
     </p>
   </div>
 
-  <ul
-    class="m-auto flex max-w-5xl flex-wrap items-center justify-center gap-8 md:gap-12"
+  <div
+    class="m-auto flex max-w-4xl flex-col items-center justify-center gap-12"
   >
     {
-      SKILLS.map(({ name, icon: Icon }, index) => (
-        <li
-          class="skill-item flex flex-col items-center gap-3 opacity-0"
-          style={`--index: ${index}`}
-        >
-          <div class="group relative flex items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white/80 p-5 text-slate-900 shadow-sm backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-xl hover:shadow-blue-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      SKILLS.map((group) => (
+        <div class="flex w-full flex-col items-center justify-center gap-6">
+          {/* Título de la Categoría: tamaño sutil pero legible */}
+          <h3 class="text-center text-xs font-bold uppercase tracking-[0.25em] text-blue-600/90 dark:text-blue-400/90">
+            {group.category}
+          </h3>
 
-            <Icon class="relative z-10 size-12 transition-transform duration-500 group-hover:rotate-3 group-hover:scale-110 md:size-16" />
+          {/* Flex para centrado perfecto */}
+          <ul class="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+            {group.items.map((skill, index) => (
+              <li
+                class="skill-item flex w-24 flex-col items-center justify-center gap-3 opacity-0 sm:w-28"
+                style={`--index: ${index}`}
+              >
+                {/* Contenedor equilibrado: p-4 y bordes redondeados medios */}
+                <div class="group relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white/60 p-4 text-slate-900 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-blue-500/15 dark:border-slate-700 dark:bg-slate-800/60 dark:text-white">
+                  <div class="absolute inset-0 bg-gradient-to-br from-blue-600/15 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-            <div class="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500 group-hover:border-blue-500/30" />
-          </div>
+                  {/* Iconos de tamaño medio: de size-8 a size-10 (40px) */}
+                  <skill.icon class="relative z-10 size-10 transition-transform duration-500 group-hover:scale-110 md:size-12" />
 
-          <span class="text-xs font-black uppercase tracking-widest text-slate-500 transition-colors group-hover:text-blue-500 dark:text-slate-400 md:text-sm">
-            {name}
-          </span>
-        </li>
+                  <div class="absolute inset-0 rounded-xl border-2 border-transparent transition-all duration-500 group-hover:border-blue-500/25" />
+                </div>
+
+                {/* Texto del nombre: claro y centrado */}
+                <span class="text-center text-[10px] font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 md:text-xs">
+                  {skill.name}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </section>
 
 <style>

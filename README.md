@@ -8,7 +8,7 @@ The portfolio is built with **Astro** and **Tailwind CSS**, prioritizing perform
 
 ## 📸 Preview
 
-![Portfolio Preview](./public/assets/img/preview.webp)
+![Portfolio Preview](./docs/preview.webp)
 
 ---
 
