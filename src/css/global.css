@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* Esto reemplaza a 'darkMode: "class"' */
+@variant dark (&:where(.dark, .dark *));
+
+/* Si tenías extensiones de tema (colores, fuentes), van aquí: */
+@theme {
+  --color-primary: #3b82f6; /* Ejemplo de cómo añadir colores ahora */
+}
