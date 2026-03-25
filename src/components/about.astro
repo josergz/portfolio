@@ -1,3 +1,8 @@
+---
+import { Image } from "astro:assets";
+import profileImg from "../assets/img/profile.webp";
+---
+
 <section
   id="about"
   class="mx-auto flex w-full max-w-5xl scroll-mt-20 flex-col space-y-12 p-4 py-12 md:py-16 lg:py-20"
@@ -14,17 +19,18 @@
     <div class="reveal-left order-1 flex-shrink-0 md:order-2">
       <div class="group relative">
         <div
-          class="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 opacity-25 blur transition duration-1000 group-hover:opacity-50"
+          class="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 opacity-20 blur transition duration-1000 group-hover:opacity-40"
         >
         </div>
-        <img
-          src="/assets/img/profile.webp"
+
+        <Image
+          src={profileImg}
           alt="Foto de perfil de José Rodríguez"
+          width={250}
+          height={250}
           loading="lazy"
           decoding="async"
-          width="250"
-          height="250"
-          class="relative size-48 rounded-full border-2 border-slate-200 object-cover shadow-xl dark:border-slate-800 md:size-56"
+          class="relative size-48 rounded-full border-2 border-slate-200 object-cover shadow-xl transition-transform duration-500 group-hover:scale-[1.02] dark:border-slate-800 md:size-56"
         />
       </div>
     </div>
@@ -38,8 +44,8 @@
         >
         egresado del <span class="font-medium text-slate-900 dark:text-white"
           >TecNM Campus de Los Ríos</span
-        >, con especialidad en
-        <span class="font-semibold text-blue-700 dark:text-blue-400"
+        >, con especialidad en <span
+          class="font-semibold text-blue-700 dark:text-blue-400"
           >Ingeniería de Software</span
         >.
       </p>
@@ -48,9 +54,9 @@
         Actualmente me desempeño como <span
           class="font-medium text-slate-900 dark:text-white"
           >desarrollador frontend freelance</span
-        > donde transformo ideas en productos digitales funcionales y modernos. Mi
-        prioridad es siempre entregar soluciones con alto rendimiento y un código
-        limpio y mantenible.
+        >
+        donde transformo ideas en productos digitales funcionales y modernos. Mi prioridad
+        es siempre entregar soluciones con alto rendimiento y un código limpio y mantenible.
       </p>
 
       <p>

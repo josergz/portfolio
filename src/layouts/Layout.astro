@@ -3,6 +3,7 @@ import "@fontsource-variable/onest";
 import Header from "../components/Header.astro";
 import Footer from "../components/footer.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
+import "../css/global.css";
 
 interface Props {
   title: string;
@@ -10,9 +11,13 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
-const siteUrl = "https://www.josergz.dev/";
-const siteImg = "/img/og-preview.png";
-const typeUrl = "website";
+
+// Asegúrate de que esta sea la URL real de tu proyecto en Vercel
+const siteUrl = "https://www.josergz.dev";
+const siteImg = "/og-preview.png";
+
+// Generamos la URL absoluta de forma más robusta
+const socialImageURL = `${siteUrl}${siteImg}`;
 ---
 
 <!doctype html>
@@ -27,20 +32,22 @@ const typeUrl = "website";
     <meta name="description" content={description} />
     <link rel="canonical" href={siteUrl} />
 
+    <meta property="og:type" content="website" />
     <meta property="og:url" content={siteUrl} />
-    <meta property="og:type" content={typeUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(siteImg, Astro.url)} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:locale" content="es_MX" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="josergz.dev" />
-    <meta property="twitter:url" content={siteUrl} />
+    <meta name="twitter:url" content={siteUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(siteImg, Astro.url)} />
+    <meta name="twitter:image" content={socialImageURL} />
+    {
+      /* Twitter a veces prefiere 'name' en lugar de 'property' para sus propias etiquetas */
+    }
   </head>
-
   <body
     class="relative flex min-h-screen flex-col bg-gray-50 transition-colors duration-300 dark:bg-slate-900"
   >

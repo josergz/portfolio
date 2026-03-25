@@ -1,12 +1,20 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
+import tailwindcss from "@tailwindcss/vite"; // <--- Nuevo import
+import vercel from "@astrojs/vercel";
 
 export default defineConfig({
-  integrations: [tailwind()],
+  // 1. Quitamos tailwind() de aquí
+  integrations: [],
   output: "server",
-  adapter: vercel(),
-  security: {
-    checkOrigin: false, // Prueba desactivando esto temporalmente
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
+  // 2. Agregamos Tailwind aquí como plugin de Vite
+  vite: {
+    plugins: [tailwindcss()],
   },
+  security: {
+    checkOrigin: false,
+  },
+  site: "https://www.josergz.dev",
 });
