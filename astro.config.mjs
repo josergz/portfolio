@@ -9,4 +9,5 @@ export default defineConfig({
   security: {
     checkOrigin: false, // Prueba desactivando esto temporalmente
   },
+  site: "https://www.josergz.dev",
 });
