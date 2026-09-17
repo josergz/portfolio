@@ -1,12 +1,14 @@
 ---
-import Form from "../components/form.astro";
+// Reemplaza con tus datos reales
+const email = "contacto@josergz.dev";
+const linkedinUrl = "https://linkedin.com/in/josergz";
 ---
 
 <section
   id="contact"
   class="flex min-h-[70vh] scroll-mt-20 flex-col items-center justify-center p-4 py-12 md:py-16 lg:py-20"
 >
-  <div class="reveal-content mx-auto mb-12 max-w-3xl text-center">
+  <div class="reveal-content mx-auto mb-10 max-w-3xl text-center">
     <h2
       class="text-balance text-center text-3xl font-bold tracking-tight text-slate-900 md:text-5xl dark:text-white"
     >
@@ -15,13 +17,31 @@ import Form from "../components/form.astro";
     <p
       class="mx-auto mt-6 max-w-2xl text-justify text-lg font-medium leading-8 text-slate-700 md:text-center md:text-xl dark:text-slate-300"
     >
-      Estoy disponible para nuevos proyectos. Hablemos sobre cómo puedo ayudarte
-      a hacer crecer tu negocio online.
+      Estoy disponible para nuevos proyectos. Envíame un correo directo o conectemos por LinkedIn y hablemos de tu idea.
     </p>
   </div>
 
-  <div class="reveal-content mx-auto w-full max-w-2xl">
-    <Form />
+  <div class="reveal-content flex flex-col items-center justify-center gap-4 sm:flex-row">
+    <!-- CTA Principal: Enviar correo -->
+    <a
+      href={`mailto:${email}?subject=Propuesta%20de%20Proyecto`}
+      class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+      Escríbeme por correo
+    </a>
+
+    <!-- CTA Secundario: Red profesional -->
+    <a
+      href={linkedinUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-transparent px-6 py-3.5 text-base font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800/60"
+    >
+      Conectar en LinkedIn
+    </a>
   </div>
 </section>
 
